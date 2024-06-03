@@ -5,6 +5,8 @@ from ultralytics import YOLO
 import supervision as sv
 import numpy as np
 
+from win10toast import ToastNotifier
+
 ZONE_POLYGON = np.array([
     [0, 0],
     [0.5, 0],
@@ -60,7 +62,12 @@ def main():
         result = model(frame, agnostic_nms=True)[0]
         detections = sv.Detections.from_yolov8(result)
         # detections = detections[detections.class_id != 0]
-      
+        if (detections[detections.class_id == 43]):
+            toaster.show_toast(
+             "Dangerous Object Detected! => Knife",
+             "A Harmful object has been detected in the surveillance. Please look in this matter",
+            duration=10  # duration in seconds
+            )
 
 
         labels = [
