@@ -62,9 +62,23 @@ def main():
         result = model(frame, agnostic_nms=True)[0]
         detections = sv.Detections.from_yolov8(result)
         # detections = detections[detections.class_id != 0]
-        if (detections[detections.class_id == 43]):
+        if (detections[detections.class_id == 42]):
+            toaster.show_toast(
+             "Dangerous Object Detected! => Fork",
+             "A Harmful object has been detected in the surveillance. Please look in this matter",
+            duration=10  # duration in seconds
+            )
+
+        elif (detections[detections.class_id == 43]):
             toaster.show_toast(
              "Dangerous Object Detected! => Knife",
+             "A Harmful object has been detected in the surveillance. Please look in this matter",
+            duration=10  # duration in seconds
+            )
+
+        elif (detections[detections.class_id == 76]):
+            toaster.show_toast(
+             "Dangerous Object Detected! => Scissors",
              "A Harmful object has been detected in the surveillance. Please look in this matter",
             duration=10  # duration in seconds
             )
